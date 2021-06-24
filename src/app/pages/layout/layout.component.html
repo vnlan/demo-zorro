@@ -1,0 +1,217 @@
+<!--<nz-select-->
+<!--  [(ngModel)]="selectedUser"-->
+<!--  (nzScrollToBottom)="loadMore()"-->
+<!--  nzPlaceHolder="Select users"-->
+<!--  nzAllowClear-->
+<!--  [nzDropdownRender]="renderTemplate"-->
+<!--&gt;-->
+<!--  <nz-option *ngFor="let o of optionList" [nzValue]="o" [nzLabel]=o.first_name></nz-option>-->
+<!--</nz-select>-->
+<!--<ng-template #renderTemplate>-->
+<!--  <nz-spin *ngIf = "isLoading"></nz-spin>-->
+<!--</ng-template>-->
+
+<div class="markdown">
+  <h1>Layout</h1>
+  <p>Xử lý bố cục tổng thể của một trang. Về bản chất, <code>nz-layout</code> là 1 div nhưng hỗ trợ nhiều lựa chọn để
+    developer có thể dễ dàng tạo khung cho giao diện của mình</p>
+  <pre class="language-ts"><code><span class="token keyword">import</span> <span
+    class="token punctuation">{{'{'}}</span> NzLayoutModule <span class="token punctuation">}</span> <span
+    class="token keyword">from</span> <span
+    class="token string">'ng-zorro-antd/layout'</span><span class="token punctuation">;</span></code></pre>
+  <h3>Đặc điểm kĩ thuật</h3>
+  <h4>Size</h4>
+  <ul>
+    <li> Top Navigation (gần như hệ thống): chiều cao của điều hướng cấp một là <code>64px</code>, điều hướng cấp hai là
+      <code>48px</code>.
+    </li>
+    <li> Top Navigation (trang nội dung): chiều cao của điều hướng cấp một là <code>80px</code>, điều hướng cấp hai là
+      <code>56px</code>.
+    </li>
+    <li> Công thức tính toán của Top Navigation là: <code>48 +8n</code>.</li>
+    <li> Công thức tính toán của một aside navigation: <code>200 + 8n</code>.</li>
+  </ul>
+  <h4>Đặc điểm kĩ thuật</h4>
+  <ul>
+    <li> Điều hướng cấp độ đầu tiên và điều hướng cấp độ cuối cùng nên được phân biệt bằng trực quan hóa;</li>
+    <li> Item hiện tại phải có ưu tiên trực quan hóa cao nhất;</li>
+    <li> Khi điều hướng hiện tại được thu gọn, stlye của mục điều hướng hiện tại sẽ được áp dụng cho cấp độ cha của
+      nó;
+    </li>
+    <li> Thanh điều hướng bên trái có hỗ trợ cho cả styles accordion và mở rộng, bạn có thể chọn một thanh phù hợp nhất
+      với trường hợp của mình.
+    </li>
+  </ul>
+  <h2>Quy tắc hình ảnh hoá</h2>
+  <p>Kiểu điều hướng phải phù hợp với mức độ của nó.</p>
+  <ul>
+    <li><p><strong>Nhấn mạnh bằng colorblock</strong></p>
+      <p> Khi màu nền là a deep color, bạn có thể sử dụng pattern này cho điều hướng cha của trang hiện tại.</p></li>
+    <li><p><strong>The highlight match stick</strong></p>
+      <p> Khi màu nền là màu sáng, bạn có thể sử dụng pattern này cho mục điều hướng trang hiện tại, chúng tôi đã làm
+        lại bằng cách sử dụng nó cho mục cuối cùng của đường dẫn điều hướng.</p></li>
+    <li><p><strong>Hightlighted font</strong></p>
+      <p> Từ khía cạnh trực quan hóa, phông chữ có độ sáng cao mạnh hơn colorblock, mẫu này thường được sử dụng cho cấp
+        độ cha của mục hiện tại.</p></li>
+    <li><p><strong>Enlarge the size of the font</strong></p>
+      <p><code>12px</code>、<code>14px</code> là cỡ chữ tiêu chuẩn của điều hướng，<code>14px</code> được sử dụng cho cấp
+        độ đầu tiên và thứ hai của điều hướng. Bạn có thể chọn kích thước phông chữ thích hợp theo cấp độ điều hướng của
+        bạn.</p></li>
+  </ul>
+  <h2>Tổng quan các components</h2>
+  <ul>
+    <li><code>nz-layout</code>: The layout wrapper, trong đó
+      <code>nz-header</code><code>nz-sider</code><code>nz-content</code><code>nz-footer</code>
+      hoặc là <code>nz-layout</code> chính nó có thể được nested, và có thể được đặt trong bất kỳ parent container.
+    </li>
+    <li><code>nz-header</code>: Top layout với kiểu mặc định, trong đó bất kỳ yếu tố nào có thể được nested và phải
+      được đặt trong <code>nz-layout</code>.
+    </li>
+    <li><code>nz-sider</code>: Sidebar với kiểu mặc định và các hàm cơ bản, trong đó bất kỳ phần tử nào có thể được
+      nested và phải được đặt trong <code>nz-layout</code>.
+    </li>
+    <li><code>nz-content</code>: Content layout với kiểu mặc định, trong đó bất kỳ phần tử nào có thể được nested và
+      phải được đặt trong <code>vnpt-layout</code>.
+    </li>
+    <li><code>nz-footer</code>: Bottom layout với kiểu mặc định, trong đó bất kỳ yếu tố nào có thể được lồng và phải
+      được đặt trong <code>nz-layout</code>.
+    </li>
+  </ul>
+  <h2>Ví dụ</h2>
+  <h4>Cấu trúc cơ bản</h4>
+  <nz-layout>
+    <nz-header>Header</nz-header>
+    <nz-content>Content</nz-content>
+    <nz-footer>Footer</nz-footer>
+  </nz-layout>
+
+  <nz-layout>
+    <nz-header>Header</nz-header>
+    <nz-layout>
+      <nz-sider>Sider</nz-sider>
+      <nz-content>Content</nz-content>
+    </nz-layout>
+    <nz-footer>Footer</nz-footer>
+  </nz-layout>
+
+  <nz-layout>
+    <nz-header>Header</nz-header>
+    <nz-layout>
+      <nz-content>Content</nz-content>
+      <nz-sider>Sider</nz-sider>
+    </nz-layout>
+    <nz-footer>Footer</nz-footer>
+  </nz-layout>
+
+  <nz-layout>
+    <nz-sider>Sider</nz-sider>
+    <nz-layout>
+      <nz-header>Header</nz-header>
+      <nz-content>Content</nz-content>
+      <nz-footer>Footer</nz-footer>
+    </nz-layout>
+  </nz-layout>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+      <pre class="language-angular"><code><span class="token keyword">import</span> <span
+        class="token punctuation">{{'{'}}</span> Component <span class="token punctuation">}</span> <span
+        class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+        class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{{'{'}}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-layout-basic'</span><span class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-header</span><span class="token punctuation">&gt;</span></span>Header<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-header</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-content</span><span class="token punctuation">&gt;</span></span>Content<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-content</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-footer</span><span class="token punctuation">&gt;</span></span>Footer<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-footer</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-header</span><span class="token punctuation">&gt;</span></span>Header<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-header</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-sider</span><span class="token punctuation">&gt;</span></span>Sider<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-sider</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-content</span><span class="token punctuation">&gt;</span></span>Content<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-content</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-footer</span><span class="token punctuation">&gt;</span></span>Footer<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-footer</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-header</span><span class="token punctuation">&gt;</span></span>Header<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-header</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-content</span><span class="token punctuation">&gt;</span></span>Content<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-content</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-sider</span><span class="token punctuation">&gt;</span></span>Sider<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-sider</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-footer</span><span class="token punctuation">&gt;</span></span>Footer<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-footer</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-sider</span><span class="token punctuation">&gt;</span></span>Sider<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-sider</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-header</span><span class="token punctuation">&gt;</span></span>Header<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-header</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-content</span><span class="token punctuation">&gt;</span></span>Content<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-content</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-footer</span><span class="token punctuation">&gt;</span></span>Footer<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-footer</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-layout</span><span class="token punctuation">&gt;</span></span>
+  `</span></span><span class="token punctuation">,</span>
+  <span class="token styles-string">styles: [
+    <span class="token css"><span class="token selector">`
+      <span class="token pseudo-class">:host</span> </span><span class="token punctuation">{{'{'}}</span>
+        <span class="token property">text-align</span><span class="token punctuation">:</span> center<span
+          class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token selector">nz-header,
+      nz-footer </span><span class="token punctuation">{{'{'}}</span>
+        <span class="token property">background</span><span class="token punctuation">:</span> <span
+          class="token hexcode">#7dbcea</span><span class="token punctuation">;</span>
+        <span class="token property">color</span><span class="token punctuation">:</span> <span class="token hexcode">#fff</span><span
+          class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token selector">nz-footer </span><span class="token punctuation">{{'{'}}</span>
+        <span class="token property">line-height</span><span class="token punctuation">:</span> <span
+          class="token number">1.5</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token selector">nz-sider </span><span class="token punctuation">{{'{'}}</span>
+        <span class="token property">background</span><span class="token punctuation">:</span> <span
+          class="token hexcode">#3ba0e9</span><span class="token punctuation">;</span>
+        <span class="token property">color</span><span class="token punctuation">:</span> <span class="token hexcode">#fff</span><span
+          class="token punctuation">;</span>
+        <span class="token property">line-height</span><span class="token punctuation">:</span> <span
+          class="token number">120</span>px<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token selector">nz-content </span><span class="token punctuation">{{'{'}}</span>
+        <span class="token property">background</span><span class="token punctuation">:</span> <span
+          class="token function">rgba</span><span class="token punctuation">(</span><span class="token number">16</span>, <span
+          class="token number">142</span>, <span class="token number">233</span>, <span
+          class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token property">color</span><span class="token punctuation">:</span> <span class="token hexcode">#fff</span><span
+          class="token punctuation">;</span>
+        <span class="token property">min-height</span><span class="token punctuation">:</span> <span
+          class="token number">120</span>px<span class="token punctuation">;</span>
+        <span class="token property">line-height</span><span class="token punctuation">:</span> <span
+          class="token number">120</span>px<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token selector">nz-layout </span><span class="token punctuation">{{'{'}}</span>
+        <span class="token property">margin-bottom</span><span class="token punctuation">:</span> <span
+          class="token number">48</span>px<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token selector">nz-layout<span class="token pseudo-class">:last-child</span> </span><span class="token punctuation"></span>
+        <span class="token property">margin</span><span class="token punctuation">:</span> <span
+          class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    `</span>
+  ]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoLayoutBasicComponent</span> <span
+          class="token punctuation">{{'{'}}</span><span class="token punctuation">}</span>
+</code></pre>
+    </div>
+  </section>
+  <p>Xem thêm các demo khác tại <a>https://ng.ant.design/components/layout/en</a></p>
+</div>

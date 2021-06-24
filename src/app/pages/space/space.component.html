@@ -1,0 +1,455 @@
+<div class="markdown">
+  <h1>Khoảng cách </h1>
+  <p>Dùng để thiết lập khoảng cách giữa các components</p>
+  <h2>Khi nào sử dụng</h2>
+  <P>Tránh các component sát nhau và thiết lập một khoảng cách thống nhất.</P>
+  <pre class="language-ts"><code><span class="token keyword">import</span> <span
+    class="token punctuation">{{'{'}}</span> NzSpaceModule <span class="token punctuation">}</span> <span
+    class="token keyword">from</span> <span
+    class="token string">'ng-zorro-antd/space'</span><span class="token punctuation">;</span></code></pre>
+  <h2>Ví dụ</h2>
+  <h4>Cách dùng cơ bản</h4>
+  <p>Điều hướng khoảng cách của các component theo chiều ngang.</p>
+  <section class="code-box-demo">
+    <div class="ng-star-inserted">
+
+      <nz-space class="ant-space ant-space-horizontal"><!----><!----><!---->
+        <div class="ant-space-item ng-star-inserted" style="margin-right: 8px;">
+          <button nz-button="" nztype="primary" class="ant-btn ant-btn-primary ng-star-inserted"><!----><span
+            class="ng-star-inserted">Button</span></button><!----></div><!---->
+        <div class="ant-space-item ng-star-inserted" style="margin-right: 8px;">
+
+          <div class="ant-upload ant-upload-select ant-upload-select-text ng-star-inserted">
+            <div nz-upload-btn="" class="ant-upload" tabindex="0" role="button"><input type="file"
+                                                                                       style="display: none;">
+              <button nz-button="" class="ant-btn ng-star-inserted"><!----><i nz-icon="" nztype="upload"
+                                                                              class="anticon anticon-upload">
+                <svg viewBox="64 64 896 896" focusable="false" fill="currentColor" width="1em" height="1em"
+                     data-icon="upload" aria-hidden="true">
+                  <path
+                    d="M400 317.7h73.9V656c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V317.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 163a8 8 0 00-12.6 0l-112 141.7c-4.1 5.3-.4 13 6.3 13zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"></path>
+                </svg>
+              </i><span class="ng-star-inserted"> Click to Upload </span></button><!----></div>
+          </div><!---->
+        </div>
+        <!---->
+        <div class="ant-space-item ng-star-inserted">
+          <button nz-button="" nz-popconfirm="" nzoktext="Yes" nzcanceltext="No"
+                  nzpopconfirmtitle="Are you sure delete this task?" class="ant-btn ng-star-inserted"><!----><span
+            class="ng-star-inserted"> Confirm </span></button><!----><!----></div><!----><!----></nz-space>
+    </div><!----><!----></section>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+      <pre class="language-angular"><code><span class="token keyword">import</span> <span
+        class="token punctuation">{{'{'}}</span> Component <span class="token punctuation">}</span> <span
+        class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+        class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span
+          class="token punctuation">{{'{'}}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-space-basic'</span><span
+          class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-space</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span
+        class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">nz-button</span> <span
+        class="token attr-name">nzType</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>primary<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Button<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-upload</span> <span
+        class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">nzAction</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://www.mocky.io/v2/5cc8019d300000980a055e76<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span
+          class="token attr-name">nz-button</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span
+            class="token attr-name">nz-icon</span> <span class="token attr-name">nzType</span><span
+            class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>upload<span
+            class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span
+      class="token punctuation">&gt;</span></span>
+          Click to Upload
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span
+          class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-upload</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span
+        class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">nz-button</span> <span
+        class="token attr-name">nz-popconfirm</span> <span class="token attr-name">nzOkText</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>Yes<span class="token punctuation">"</span></span> <span
+        class="token attr-name">nzCancelText</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>No<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzPopconfirmTitle</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Are you sure delete this task?<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        Confirm
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span
+        class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-space</span><span
+      class="token punctuation">&gt;</span></span>
+  `</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoSpaceBasicComponent</span> <span
+          class="token punctuation">{{'{'}}</span><span class="token punctuation">}</span>
+</code></pre>
+    </div>
+  </section>
+  <h4>Khoảng cách chiều dọc</h4>
+  <p>Điều hướng các component theo chiều dọc .</p>
+  <nz-space nzDirection="vertical">
+    <nz-card *nzSpaceItem nzTitle="Card" style="width: 300px">
+      <p>Card content</p>
+      <p>Card content</p>
+    </nz-card>
+    <nz-card *nzSpaceItem nzTitle="Card" style="width: 300px">
+      <p>Card content</p>
+      <p>Card content</p>
+    </nz-card>
+  </nz-space>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+   <pre class="language-angular"><code><span class="token keyword">import</span> <span
+     class="token punctuation">{{'{'}}</span> Component <span class="token punctuation">}</span> <span
+     class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+     class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span
+       class="token punctuation">{{'{'}}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-space-vertical'</span><span
+       class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-space</span> <span
+      class="token attr-name">nzDirection</span><span class="token attr-value"><span
+      class="token punctuation">=</span><span class="token punctuation">"</span>vertical<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-card</span> <span
+        class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">nzTitle</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>Card<span class="token punctuation">"</span></span><span
+        class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span
+        class="token punctuation">="</span><span class="token attr-value"><span class="token property">width</span><span
+        class="token punctuation">:</span> <span class="token number">300</span>px</span><span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span
+          class="token punctuation">&gt;</span></span>Card content<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span
+          class="token punctuation">&gt;</span></span>Card content<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-card</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-card</span> <span
+        class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">nzTitle</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>Card<span class="token punctuation">"</span></span><span
+        class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span
+        class="token punctuation">="</span><span class="token attr-value"><span class="token property">width</span><span
+        class="token punctuation">:</span> <span class="token number">300</span>px</span><span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span
+          class="token punctuation">&gt;</span></span>Card content<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span
+          class="token punctuation">&gt;</span></span>Card content<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-card</span><span
+        class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-space</span><span
+      class="token punctuation">&gt;</span></span>
+  `</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoSpaceVerticalComponent</span> <span
+       class="token punctuation">{{'{'}}</span><span class="token punctuation">}</span>
+</code></pre>
+
+    </div>
+  </section>
+  <h4>Space Size</h4>
+  <p>Kích thước space có các preset size <code>large</code>, <code>middle</code> và <code>small</code>.</p>
+  <p>Thiết lập <code>nzSize</code> sang <code>large</code> và <code>middle</code> bằng cách đặt kích thước tương ứng
+    thành lớn và trung bình. Nếu <code>size</code> chưa được đặt, khoảng cách sẽ là <code>small</code>.</p>
+
+
+  <nz-radio-group [(ngModel)]="size">
+    <label nz-radio nzValue="small">Small</label>
+    <label nz-radio nzValue="middle">Middle</label>
+    <label nz-radio nzValue="large">Large</label>
+  </nz-radio-group>
+  <nz-space [nzSize]="size">
+    <button *nzSpaceItem nz-button nzType="primary">Button</button>
+    <button *nzSpaceItem nz-button nzType="default">Default</button>
+    <button *nzSpaceItem nz-button nzType="dashed">Dashed</button>
+    <a *nzSpaceItem nz-button nzType="link">Link</a>
+  </nz-space>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+    <pre class="language-angular"><code><span class="token keyword">import</span> <span
+      class="token punctuation">{{'{'}}</span> Component <span class="token punctuation">}</span> <span
+      class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+      class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span
+        class="token punctuation">{{'{'}}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-space-size'</span><span
+        class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;</span>nz-radio-group</span> <span class="token attr-name">[(ngModel)]</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>size<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span
+        class="token attr-name">nz-radio</span> <span class="token attr-name">nzValue</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>small<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>Small<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span
+        class="token attr-name">nz-radio</span> <span class="token attr-name">nzValue</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>middle<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>Middle<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span
+        class="token attr-name">nz-radio</span> <span class="token attr-name">nzValue</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>large<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>Large<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>nz-radio-group</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-space</span> <span
+      class="token attr-name">[nzSize]</span><span class="token attr-value"><span
+      class="token punctuation">=</span><span class="token punctuation">"</span>size<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span
+        class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">nz-button</span> <span
+        class="token attr-name">nzType</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>primary<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Button<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span
+        class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">nz-button</span> <span
+        class="token attr-name">nzType</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>default<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Default<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span
+        class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">nz-button</span> <span
+        class="token attr-name">nzType</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>dashed<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>Dashed<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span
+        class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">nz-button</span> <span
+        class="token attr-name">nzType</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>link<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Link<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-space</span><span
+      class="token punctuation">&gt;</span></span>
+  `</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoSpaceSizeComponent</span> <span
+        class="token punctuation">{{'{'}}</span>
+  size<span class="token punctuation">:</span> <span class="token string">'small'</span> <span
+        class="token operator">|</span> <span class="token string">'middle'</span> <span
+        class="token operator">|</span> <span class="token string">'large'</span> <span
+        class="token operator">|</span> <span class="token keyword">number</span> <span
+        class="token operator">=</span> <span class="token string">'small'</span><span
+        class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+    </div>
+  </section>
+  <h4>Căn chỉnh</h4>
+  <p>Thiết lập chế độ căn chỉnh</p>
+  <div class="space-align-container">
+    <div nz-space nzAlign="center" class="space-align-block">
+      <ng-container *nzSpaceItem>center</ng-container>
+      <button *nzSpaceItem nz-button nzType="primary">Button</button>
+      <span *nzSpaceItem class="mock-block">Block</span>
+    </div>
+
+    <div nz-space nzAlign="start" class="space-align-block">
+      <ng-container *nzSpaceItem>start</ng-container>
+      <button *nzSpaceItem nz-button nzType="primary">Button</button>
+      <span *nzSpaceItem class="mock-block">Block</span>
+    </div>
+
+    <div nz-space nzAlign="end" class="space-align-block">
+      <ng-container *nzSpaceItem>end</ng-container>
+      <button *nzSpaceItem nz-button nzType="primary">Button</button>
+      <span *nzSpaceItem class="mock-block">Block</span>
+    </div>
+
+    <div nz-space nzAlign="baseline" class="space-align-block">
+      <ng-container *nzSpaceItem>baseline</ng-container>
+      <button *nzSpaceItem nz-button nzType="primary">Button</button>
+      <span *nzSpaceItem class="mock-block">Block</span>
+    </div>
+  </div>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+      <pre class="language-angular"><code><span class="token keyword">import</span> <span
+        class="token punctuation">{{'{'}}</span> Component <span class="token punctuation">}</span> <span
+        class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+        class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span
+          class="token punctuation">{{'{'}}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-space-align'</span><span
+          class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>space-align-container<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-space</span> <span class="token attr-name">nzAlign</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>center<span class="token punctuation">"</span></span> <span
+        class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>space-align-block<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span
+          class="token punctuation">&lt;</span>ng-container</span> <span
+          class="token attr-name">*nzSpaceItem</span><span class="token punctuation">&gt;</span></span>center<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ng-container</span><span
+      class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span
+          class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">nz-button</span> <span
+          class="token attr-name">nzType</span><span class="token attr-value"><span
+          class="token punctuation">=</span><span class="token punctuation">"</span>primary<span
+          class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Button<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span
+      class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span
+          class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">class</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mock-block<span
+          class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Block<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-space</span> <span class="token attr-name">nzAlign</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>start<span class="token punctuation">"</span></span> <span
+        class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>space-align-block<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span
+          class="token punctuation">&lt;</span>ng-container</span> <span
+          class="token attr-name">*nzSpaceItem</span><span class="token punctuation">&gt;</span></span>start<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ng-container</span><span
+      class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span
+          class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">nz-button</span> <span
+          class="token attr-name">nzType</span><span class="token attr-value"><span
+          class="token punctuation">=</span><span class="token punctuation">"</span>primary<span
+          class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Button<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span
+      class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span
+          class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">class</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mock-block<span
+          class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Block<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-space</span> <span class="token attr-name">nzAlign</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>end<span class="token punctuation">"</span></span> <span
+        class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>space-align-block<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span
+          class="token punctuation">&lt;</span>ng-container</span> <span
+          class="token attr-name">*nzSpaceItem</span><span class="token punctuation">&gt;</span></span>end<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ng-container</span><span
+      class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span
+          class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">nz-button</span> <span
+          class="token attr-name">nzType</span><span class="token attr-value"><span
+          class="token punctuation">=</span><span class="token punctuation">"</span>primary<span
+          class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Button<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span
+      class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span
+          class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">class</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mock-block<span
+          class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Block<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-space</span> <span class="token attr-name">nzAlign</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>baseline<span
+        class="token punctuation">"</span></span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>space-align-block<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span
+          class="token punctuation">&lt;</span>ng-container</span> <span
+          class="token attr-name">*nzSpaceItem</span><span class="token punctuation">&gt;</span></span>baseline<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ng-container</span><span
+      class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span
+          class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">nz-button</span> <span
+          class="token attr-name">nzType</span><span class="token attr-value"><span
+          class="token punctuation">=</span><span class="token punctuation">"</span>primary<span
+          class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Button<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span
+      class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span
+          class="token attr-name">*nzSpaceItem</span> <span class="token attr-name">class</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mock-block<span
+          class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Block<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+  `</span></span><span class="token punctuation">,</span>
+  <span class="token styles-string">styles: [
+    <span class="token css"><span class="token selector">`
+      <span class="token class">.space-align-container</span> </span><span class="token punctuation">{{'{'}}</span>
+        <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+        <span class="token property">align-item</span><span class="token punctuation">:</span> flex-start<span class="token punctuation">;</span>
+        <span class="token property">flex-wrap</span><span class="token punctuation">:</span> wrap<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token selector"><span class="token class">.space-align-block</span> </span><span
+        class="token punctuation">{{'{'}}</span>
+        <span class="token property">margin</span><span class="token punctuation">:</span> <span class="token number">8</span>px <span class="token number">4</span>px<span class="token punctuation">;</span>
+        <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">1</span>px solid <span class="token hexcode">#40a9ff</span><span class="token punctuation">;</span>
+        <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">4</span>px<span class="token punctuation">;</span>
+        <span class="token property">flex</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token selector"><span class="token class">.space-align-block</span> <span class="token class">.mock-block</span> </span><span
+        class="token punctuation">{{'{'}}</span>
+        <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
+        <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">32</span>px <span class="token number">8</span>px <span class="token number">16</span>px<span class="token punctuation">;</span>
+        <span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">rgba</span><span class="token punctuation">(</span><span class="token number">150</span>, <span class="token number">150</span>, <span class="token number">150</span>, <span class="token number">0.2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    `</span>
+  ]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoSpaceAlignComponent</span> <span
+          class="token punctuation">{{'{'}}</span><span class="token punctuation">}</span>
+</code></pre>
+    </div>
+  </section>
+</div>

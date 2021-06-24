@@ -1,0 +1,1491 @@
+<div class="markdown">
+  <h1 class="title1">Hệ thống lưới</h1>
+
+  <p>Dựa trên định dạng 12 cột của bootstrap, Ng-Zorro chia lưới dạng 24 cột thay vì 12 để phục vụ linh hoạt cho nhiều
+    trường hợp khác nhau</p>
+  <p>Ng-Zorro gọi mỗi phần được chia là "khối". Ng-Zorro khuyến nghị chỉ nên có nhiều nhất 4 khối trên một hàng ngang và
+    ít nhất là 1 khối trên một hàng như ví dụ dưới đây</p>
+  <h2>Ý tưởng thiết kế</h2>
+
+
+  <!--  <div class="demo-grid-1">-->
+  <!--  <div nz-row>-->
+  <!--    <div nz-col nzSpan="24">100%</div>-->
+  <!--  </div>-->
+
+  <!--    <div nz-row>-->
+  <!--      <div nz-col nzSpan="6">25%%</div>-->
+  <!--      <div nz-col nzSpan="6">25%%</div>-->
+  <!--      <div nz-col nzSpan="6">25%%</div>-->
+  <!--      <div nz-col nzSpan="6">25%%</div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--  <div class="grid-demo">-->
+  <!--    <div class="ant-row demo-row">-->
+  <!--      <div class="ant-col-24 demo-col demo-col-1"> 100% </div>-->
+  <!--    </div>-->
+  <!--    <div class="ant-row demo-row">-->
+  <!--      <div class="ant-col-6 demo-col demo-col-2"> 25% </div>-->
+  <!--      <div class="ant-col-6 demo-col demo-col-3"> 25% </div>-->
+  <!--      <div class="ant-col-6 demo-col demo-col-2"> 25% </div>-->
+  <!--      <div class="ant-col-6 demo-col demo-col-3"> 25% </div>-->
+  <!--    </div>-->
+  <!--    <div class="ant-row demo-row">-->
+  <!--    <div class="ant-col-8 demo-col demo-col-4"> 33.33% </div>-->
+  <!--    <div class="ant-col-8 demo-col demo-col-5"> 33.33% </div>-->
+  <!--    <div class="ant-col-8 demo-col demo-col-4"> 33.33% </div>-->
+  <!--  </div>-->
+  <!--    <div class="ant-row demo-row">-->
+  <!--      <div class="ant-col-12 demo-col demo-col-1"> 50% </div>-->
+  <!--      <div class="ant-col-12 demo-col demo-col-3"> 50% </div>-->
+  <!--    </div><div class="ant-row demo-row"><div class="ant-col-16 demo-col demo-col-4"> 66.66% </div><div class="ant-col-8 demo-col demo-col-5"> 33.33% </div></div></div>-->
+
+  <div class="grid-demo">
+    <div class="ant-row demo-row">
+      <div class="ant-col-24 demo-col demo-col-1"> 100%</div>
+    </div>
+    <div class="ant-row demo-row">
+      <div class="ant-col-6 demo-col demo-col-2"> 25%</div>
+      <div class="ant-col-6 demo-col demo-col-3"> 25%</div>
+      <div class="ant-col-6 demo-col demo-col-2"> 25%</div>
+      <div class="ant-col-6 demo-col demo-col-3"> 25%</div>
+    </div>
+    <div class="ant-row demo-row">
+      <div class="ant-col-8 demo-col demo-col-4"> 33.33%</div>
+      <div class="ant-col-8 demo-col demo-col-5"> 33.33%</div>
+      <div class="ant-col-8 demo-col demo-col-4"> 33.33%</div>
+    </div>
+    <div class="ant-row demo-row">
+      <div class="ant-col-12 demo-col demo-col-1"> 50%</div>
+      <div class="ant-col-12 demo-col demo-col-3"> 50%</div>
+    </div>
+    <div class="ant-row demo-row">
+      <div class="ant-col-16 demo-col demo-col-4"> 66.66%</div>
+      <div class="ant-col-8 demo-col demo-col-5"> 33.33%</div>
+    </div>
+  </div>
+  <h2>Tổng quan</h2>
+  <p>Trong hệ thống lưới (grid), Ng-Zorro xác định khung bên ngoài khu vực thông tin dựa trên
+    <code>row</code> (hàng)
+    và <code>column</code> (cột), để đảm bảo rằng mọi khu vực có sự sắp xếp ổn định.</p>
+  <ul>
+    <li>Mỗi thành phần trên trang web là một <code>row</code> (hàng)
+      trong hàng gồm các <code>column</code> (cột) viết tắt là <code>col</code></li>
+    <li>Các thành phần nội dung nên được đặt trực tiếp trong <code>col</code> và chỉ nên đặt <code>col</code> trực tiếp
+      vào trong <code>row</code></li>
+    <li>Các cột trong hệ thống grid có các giá trị từ 1 đến 24 để đại diện cho phạm vi của chúng</li>
+    <li>Nếu tổng <code>col</code> trong một <code>row</code> vượt quá 24, thì toàn bộ <code>col</code> dư sẽ bắt đầu một
+      dòng mới.
+    </li>
+
+  </ul>
+  <p>Để sử dụng lưới của Ng-Zorro cần import <b>NzGridModule</b> vào file Module</p>
+  <pre class="language-ts"><code><span class="token keyword">import </span><span
+    class="token punctuation">{{ '{' }}</span> NzGridModule <span class="token punctuation">}</span> <span
+    class="token keyword">from</span> <span
+    class="token string">'ng-zorro-antd/grid'</span><span class="token punctuation">;</span></code></pre>
+  <h2>Ví dụ</h2>
+  <h4>Dạng lưới cơ bản</h4>
+  <p>Tạo hệ thống lưới cơ bản bằng cách dùng <code>nz-row</code> và <code>nz-col</code> tất cả các cột
+    <code>nz-col</code> phải được đặt trong các hàng <code>nz-row</code></p>
+  <!--        <div nz-row class="ant-row">-->
+  <!--          <div nz-col nzspan="12" class="ant-col ant-col-12">col-12</div>-->
+  <!--          <div nz-col nzspan="12" class="ant-col ant-col-12">col-12</div>-->
+  <!--        </div>-->
+  <!--        <div nz-row class="ant-row">-->
+  <!--          <div nz-col nzspan="8" class="ant-col ant-col-8">col-8</div>-->
+  <!--          <div nz-col nzspan="8" class="ant-col ant-col-8">col-8</div>-->
+  <!--          <div nz-col nzspan="8" class="ant-col ant-col-8">col-8</div>-->
+  <!--        </div>-->
+  <!--        <div nz-row class="ant-row">-->
+  <!--          <div nz-col nzspan="6" class="ant-col ant-col-6">col-6</div>-->
+  <!--          <div nz-col nzspan="6" class="ant-col ant-col-6">col-6</div>-->
+  <!--          <div nz-col nzspan="6" class="ant-col ant-col-6">col-6</div>-->
+  <!--          <div nz-col nzspan="6" class="ant-col ant-col-6">col-6</div>-->
+  <!--        </div>-->
+  <section class="code-box-demo">
+    <div class="ng-star-inserted">
+      <div nz-row="" class="ant-row">
+        <div nz-col="" nzspan="12" class="ant-col ant-col-12">col-12</div>
+        <div nz-col="" nzspan="12" class="ant-col ant-col-12">col-12</div>
+      </div>
+      <div nz-row="" class="ant-row">
+        <div nz-col="" nzspan="8" class="ant-col ant-col-8">col-8</div>
+        <div nz-col="" nzspan="8" class="ant-col ant-col-8">col-8</div>
+        <div nz-col="" nzspan="8" class="ant-col ant-col-8">col-8</div>
+      </div>
+      <div nz-row="" class="ant-row">
+        <div nz-col="" nzspan="6" class="ant-col ant-col-6">col-6</div>
+        <div nz-col="" nzspan="6" class="ant-col ant-col-6">col-6</div>
+        <div nz-col="" nzspan="6" class="ant-col ant-col-6">col-6</div>
+        <div nz-col="" nzspan="6" class="ant-col ant-col-6">col-6</div>
+      </div>
+    </div><!----><!----></section>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+      <pre class="language-angular"><code><span class="token keyword">import</span> <span
+        class="token punctuation">{{ '{' }}</span> Component <span class="token punctuation">}</span> <span
+        class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+        class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span
+          class="token punctuation">{{ '{' }}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-grid-basic'</span><span
+          class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">nz-row</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>12<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-12<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>12<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-12<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">nz-row</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>8<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-8<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>8<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-8<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>8<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-8<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">nz-row</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-6<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-6<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-6<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-6<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+  `</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoGridBasicComponent</span> <span
+          class="token punctuation">{{ '{' }}</span><span class="token punctuation">}</span>
+</code></pre>
+    </div>
+  </section>
+  <h4>Khoảng cách trong lưới</h4>
+  <p>Để thiết lập khoảng cách trong hệ thống lưới, ta dùng <code>nzGutter</code> một thuộc tính của <code>nz-row</code>.
+    Ng-Zorro khuyến nghị nên để giá trị trong khoảng <code>(16 + 8n) px </code> với <code> n</code> là số tự nhiên</p>
+  <p>Có thể viết dưới dạng object như: <code> {{ '{' }} xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }</code> để phục
+    vụ responsive website. Hoặc có thể viết dưới dạng <code>[nzGutter]="[x, y]" </code> trong đó x là khoảng cách theo
+    chiều ngang giữa 2 thành phần còn y là khoảng cách theo chiều dọc. Đơn vị đo là px</p>
+  <nz-divider nzOrientation="left" nzText="Chiều ngang"></nz-divider>
+  <div nz-row [nzGutter]="16">
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+  </div>
+  <nz-divider nzOrientation="left" nzText="Responsive"></nz-divider>
+  <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+  </div>
+  <nz-divider nzOrientation="left" nzText="Chiều dọc"></nz-divider>
+  <div nz-row [nzGutter]="[16, 24]">
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div class="inner-box">col-6</div>
+    </div>
+  </div>
+
+  <nz-divider></nz-divider>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+      <pre class="language-angular"><code><span class="token keyword">import</span> <span
+        class="token punctuation">{{'{'}}</span> Component <span class="token punctuation">}</span> <span
+        class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+        class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span
+          class="token punctuation">{{ '{' }}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-grid-gutter'</span><span
+          class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-divider</span> <span
+      class="token attr-name">nzOrientation</span><span class="token attr-value"><span
+      class="token punctuation">=</span><span class="token punctuation">"</span>left<span
+      class="token punctuation">"</span></span> <span class="token attr-name">nzText</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Horizontal<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-divider</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">nz-row</span> <span class="token attr-name">[nzGutter]</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>16<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-divider</span> <span
+      class="token attr-name">nzOrientation</span><span class="token attr-value"><span
+      class="token punctuation">=</span><span class="token punctuation">"</span>left<span
+      class="token punctuation">"</span></span> <span class="token attr-name">nzText</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Responsive<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nz-divider</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">nz-row</span> <span class="token attr-name">[nzGutter]</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{ '{' }}
+      xs: 8, sm: 16, md: 24, lg: 32 }<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nz-divider</span> <span
+      class="token attr-name">nzOrientation</span><span class="token attr-value"><span
+      class="token punctuation">=</span><span class="token punctuation">"</span>left<span
+      class="token punctuation">"</span></span> <span class="token attr-name">nzText</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>Vertical<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>nz-divider</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">nz-row</span> <span class="token attr-name">[nzGutter]</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>[16, 24]<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">class</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gutter-row<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span
+      class="token punctuation">"</span>inner-box<span class="token punctuation">"</span></span><span
+      class="token punctuation">&gt;</span></span>col-6<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+  `</span></span><span class="token punctuation">,</span>
+  <span class="token styles-string">styles: [
+    <span class="token css"><span class="token selector">`
+      nz-divider </span><span class="token punctuation">{{'{'}}</span>
+        <span class="token property">color</span><span class="token punctuation">:</span> <span class="token hexcode">#333</span><span
+        class="token punctuation">;</span>
+        <span class="token property">fontweight</span><span class="token punctuation">:</span> normal<span
+        class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token selector"><span class="token class">.inner-box</span> </span><span
+        class="token punctuation">{{'{'}}</span>
+        <span class="token property">background</span><span class="token punctuation">:</span> <span
+        class="token hexcode">#0092ff</span><span class="token punctuation">;</span>
+        <span class="token property">padding</span><span class="token punctuation">:</span> <span
+        class="token number">8</span>px <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    `</span>
+  ]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoGridGutterComponent</span> <span
+          class="token punctuation">{{'{'}}</span><span class="token punctuation">}</span>
+</code></pre>
+
+    </div>
+  </section>
+  <h4>Column offset</h4>
+  <P><code>nzOffset</code> có thể sử dụng để dịch vị trí cột sang bên phải. Ví dụ sử dụng <code>nzOffset = "4"</code> có
+    thể dịch cột sang bên phải 4 đơn vị chiều rộng</P>
+  <section class="code-box-demo">
+    <div class="ng-star-inserted">
+
+      <div nz-row="" class="ant-row">
+        <div nz-col="" nzspan="8" class="ant-col ant-col-8"> col-8</div>
+        <div nz-col="" nzspan="8" nzoffset="8" class="ant-col ant-col-8 ant-col-offset-8"> col-8</div>
+      </div>
+      <div nz-row="" class="ant-row">
+        <div nz-col="" nzspan="6" nzoffset="6" class="ant-col ant-col-6 ant-col-offset-6"> col-6 col-offset-6</div>
+        <div nz-col="" nzspan="6" nzoffset="6" class="ant-col ant-col-6 ant-col-offset-6"> col-6 col-offset-6</div>
+      </div>
+      <div nz-row="" class="ant-row">
+        <div nz-col="" nzspan="12" nzoffset="6" class="ant-col ant-col-12 ant-col-offset-6"> col-12 col-offset-6</div>
+      </div>
+
+    </div><!----><!----></section>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+      <pre class="language-angular"><code><span class="token keyword">import</span> <span
+        class="token punctuation">{{'{'}}</span> Component <span class="token punctuation">}</span> <span
+        class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+        class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span
+          class="token punctuation">{{'{'}}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-grid-offset'</span><span
+          class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">nz-row</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>8<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        col-8
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>8<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzOffset</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>8<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        col-8
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">nz-row</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzOffset</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        col-6 col-offset-6
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzOffset</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        col-6 col-offset-6
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">nz-row</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>12<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzOffset</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        col-12 col-offset-6
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+  `</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoGridOffsetComponent</span> <span
+          class="token punctuation">{{'{'}}</span><span class="token punctuation">}</span>
+</code></pre>
+
+    </div>
+  </section>
+  <h4>Grid Sort</h4>
+  <p>Sử dụng <code>nzPush</code> và <code>nzPull</code> có thể dễ dàng thay đổi thứ tự cột</p>
+  <section class="code-box-demo">
+    <div class="ng-star-inserted">
+
+      <div nz-row="" class="ant-row">
+        <div nz-col="" class="ant-col ant-col-18 ant-col-push-6"> col-18 col-push-6</div>
+        <div nz-col="" class="ant-col ant-col-6 ant-col-pull-18"> col-6 col-pull-18</div>
+      </div>
+
+    </div><!----><!----></section>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+      <pre class="language-angular"><code><span class="token keyword">import</span> <span
+        class="token punctuation">{{'{'}}</span> Component <span class="token punctuation">}</span> <span
+        class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+        class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span
+          class="token punctuation">{{'{'}}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-grid-sort'</span><span
+          class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">nz-row</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>18<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzPush]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        col-18 col-push-6
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">[nzSpan]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzPull]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>18<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        col-6 col-pull-18
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+  `</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoGridSortComponent</span> <span
+          class="token punctuation">{{'{'}}</span><span class="token punctuation">}</span>
+</code></pre>
+    </div>
+  </section>
+  <h4>Bố cục</h4>
+  <p>Các phần tử con tùy thuộc vào giá trị của <code>start</code>, <code>center</code>, <code>end</code>
+    <code>space-between</code>
+    <code>space-around</code> được xác định trong phần tử cha của nó</p>
+  <section class="code-box-demo">
+    <div class="ng-star-inserted">
+      <div _ngcontent-docs-c191=""><p _ngcontent-docs-c191="">Phần tử căn trái</p>
+        <div _ngcontent-docs-c191="" nz-row="" nzjustify="start" class="ant-row ant-row-start">
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+        </div>
+        <p _ngcontent-docs-c191="">Phần tử căn giữa</p>
+        <div _ngcontent-docs-c191="" nz-row="" nzjustify="center" class="ant-row ant-row-center">
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+        </div>
+        <p _ngcontent-docs-c191="">Phần tử căn phải</p>
+        <div _ngcontent-docs-c191="" nz-row="" nzjustify="end" class="ant-row ant-row-end">
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+        </div>
+        <p _ngcontent-docs-c191="">Phần tử cách nhau một khoảng trừ đầu và cuối</p>
+        <div _ngcontent-docs-c191="" nz-row="" nzjustify="space-between" class="ant-row ant-row-space-between">
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+        </div>
+        <p _ngcontent-docs-c191="">Phần tử cách nhau cả đầu đầu cuối và giữa các phần tử</p>
+        <div _ngcontent-docs-c191="" nz-row="" nzjustify="space-around" class="ant-row ant-row-space-around">
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+          <div _ngcontent-docs-c191="" nz-col="" nzspan="4" class="ant-col ant-col-4">col-4</div>
+        </div>
+      </div>
+    </div><!----><!----></section>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+     <pre class="language-angular"><code><span class="token keyword">import</span> <span
+       class="token punctuation">{{'{'}}</span> Component <span class="token punctuation">}</span> <span
+       class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+       class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span
+         class="token punctuation">{{'{'}}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-grid-flex'</span><span
+         class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span
+        class="token punctuation">&gt;</span></span>Phần tử căn trái<span class="token tag"><span
+      class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-row</span> <span class="token attr-name">nzJustify</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>start<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span
+        class="token punctuation">&gt;</span></span>Phần tử căn giữa<span class="token tag"><span
+      class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-row</span> <span class="token attr-name">nzJustify</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>center<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span
+        class="token punctuation">&gt;</span></span>Phần tử căn phải<span class="token tag"><span
+      class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-row</span> <span class="token attr-name">nzJustify</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>end<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span
+        class="token punctuation">&gt;</span></span>Phần tử cách nhau một khoảng trừ đầu và cuối<span class="token tag"><span
+      class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-row</span> <span class="token attr-name">nzJustify</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>space-between<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span
+        class="token punctuation">&gt;</span></span>Phần tử cách nhau cả đầu đầu cuối và giữa các phần tử<span
+      class="token tag"><span
+      class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-row</span> <span class="token attr-name">nzJustify</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>space-around<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span>col-4<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+  `</span></span><span class="token punctuation">,</span>
+  <span class="token styles-string">styles: [
+    <span class="token css"><span class="token selector">`
+      <span class="token attribute">[nz-row]</span> </span><span class="token punctuation">{{'{'}}</span>
+        <span class="token property">background-color</span><span class="token punctuation">:</span> <span
+        class="token function">rgba</span><span class="token punctuation">(</span><span
+        class="token number">128</span>, <span class="token number">128</span>, <span
+        class="token number">128</span>, <span
+        class="token number">0.08</span><span class="token punctuation">)</span><span
+        class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    `</span>
+  ]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoGridFlexComponent</span> <span
+         class="token punctuation">{{'{'}}</span><span class="token punctuation">}</span>
+</code></pre>
+    </div>
+  </section>
+  <h4>Căn chỉnh</h4>
+  <p>Các phần tử con được căn chỉnh theo chiều dọc.</p>
+  <section class="code-box-demo">
+    <div class="ng-star-inserted">
+      <div _ngcontent-docs-c192=""><p _ngcontent-docs-c192="">Căn chỉnh trên</p>
+        <div _ngcontent-docs-c192="" nz-row="" nzjustify="center" nzalign="top"
+             class="ant-row ant-row-top ant-row-center">
+          <div _ngcontent-docs-c192="" nz-col="" nzspan="4" class="ant-col ant-col-4"><p _ngcontent-docs-c192=""
+                                                                                         class="height-100">col-4</p>
+          </div>
+          <div _ngcontent-docs-c192="" nz-col="" nzspan="4" class="ant-col ant-col-4"><p _ngcontent-docs-c192=""
+                                                                                         class="height-50">col-4</p>
+          </div>
+          <div _ngcontent-docs-c192="" nz-col="" nzspan="4" class="ant-col ant-col-4"><p _ngcontent-docs-c192=""
+                                                                                         class="height-120">col-4</p>
+          </div>
+          <div _ngcontent-docs-c192="" nz-col="" nzspan="4" class="ant-col ant-col-4"><p _ngcontent-docs-c192=""
+                                                                                         class="height-80">col-4</p>
+          </div>
+        </div>
+        <p _ngcontent-docs-c192="">Căn chỉnh trung tâm</p>
+        <div _ngcontent-docs-c192="" nz-row="" nzjustify="space-around" nzalign="middle"
+             class="ant-row ant-row-middle ant-row-space-around">
+          <div _ngcontent-docs-c192="" nz-col="" nzspan="4" class="ant-col ant-col-4"><p _ngcontent-docs-c192=""
+                                                                                         class="height-100">col-4</p>
+          </div>
+          <div _ngcontent-docs-c192="" nz-col="" nzspan="4" class="ant-col ant-col-4"><p _ngcontent-docs-c192=""
+                                                                                         class="height-50">col-4</p>
+          </div>
+          <div _ngcontent-docs-c192="" nz-col="" nzspan="4" class="ant-col ant-col-4"><p _ngcontent-docs-c192=""
+                                                                                         class="height-120">col-4</p>
+          </div>
+          <div _ngcontent-docs-c192="" nz-col="" nzspan="4" class="ant-col ant-col-4"><p _ngcontent-docs-c192=""
+                                                                                         class="height-80">col-4</p>
+          </div>
+        </div>
+        <p _ngcontent-docs-c192="">Căn chỉnh dưới</p>
+        <div _ngcontent-docs-c192="" nz-row="" nzjustify="space-between" nzalign="bottom"
+             class="ant-row ant-row-bottom ant-row-space-between">
+          <div _ngcontent-docs-c192="" nz-col="" nzspan="4" class="ant-col ant-col-4"><p _ngcontent-docs-c192=""
+                                                                                         class="height-100">col-4</p>
+          </div>
+          <div _ngcontent-docs-c192="" nz-col="" nzspan="4" class="ant-col ant-col-4"><p _ngcontent-docs-c192=""
+                                                                                         class="height-50">col-4</p>
+          </div>
+          <div _ngcontent-docs-c192="" nz-col="" nzspan="4" class="ant-col ant-col-4"><p _ngcontent-docs-c192=""
+                                                                                         class="height-120">col-4</p>
+          </div>
+          <div _ngcontent-docs-c192="" nz-col="" nzspan="4" class="ant-col ant-col-4"><p _ngcontent-docs-c192=""
+                                                                                         class="height-80">col-4</p>
+          </div>
+        </div>
+      </div>
+    </div><!----><!----></section>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+    <pre class="language-angular"><code><span class="token keyword">import</span> <span
+      class="token punctuation">{{'{'}}</span> Component <span class="token punctuation">}</span> <span
+      class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+      class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span
+        class="token punctuation">{{'{'}}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-grid-flex-align'</span><span
+        class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span
+        class="token punctuation">&gt;</span></span>Align Top<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-row</span> <span class="token attr-name">nzJustify</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>center<span class="token punctuation">"</span></span> <span
+        class="token attr-name">nzAlign</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>top<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>height-100<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-4<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span
+      class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>height-50<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-4<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span
+      class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>height-120<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-4<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span
+      class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>height-80<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-4<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span
+      class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span
+        class="token punctuation">&gt;</span></span>Align Center<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-row</span> <span class="token attr-name">nzJustify</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>space-around<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzAlign</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>middle<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>height-100<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-4<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span
+      class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>height-50<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-4<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span
+      class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>height-120<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-4<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span
+      class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>height-80<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-4<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span
+      class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span
+        class="token punctuation">&gt;</span></span>Align Bottom<span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-row</span> <span class="token attr-name">nzJustify</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>space-between<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzAlign</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span
+        class="token punctuation">"</span>bottom<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>height-100<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-4<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span
+      class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>height-50<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-4<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span
+      class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>height-120<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-4<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span
+      class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>4<span class="token punctuation">"</span></span><span
+          class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span
+      class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>height-80<span
+      class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>col-4<span
+      class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span
+      class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span
+      class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+  `</span></span><span class="token punctuation">,</span>
+  <span class="token styles-string">styles: [
+    <span class="token css"><span class="token selector">`
+      <span class="token attribute">[nz-row]</span> </span><span class="token punctuation">{{'{'}}</span>
+        <span class="token property">background-color</span><span class="token punctuation">:</span> <span
+        class="token function">rgba</span><span class="token punctuation">(</span><span
+        class="token number">128</span>, <span class="token number">128</span>, <span
+        class="token number">128</span>, <span
+        class="token number">0.08</span><span class="token punctuation">)</span><span
+        class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    `</span>
+  ]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoGridFlexAlignComponent</span> <span
+        class="token punctuation">{{'{'}}</span><span class="token punctuation">}</span>
+</code></pre>
+    </div>
+  </section>
+  <h4>Sắp xếp</h4>
+  <p> Thay đổi phần tử sắp xếp bằng <code>nzOrder</code></p>
+  <section class="code-box-demo">
+    <div class="ng-star-inserted">
+      <div _ngcontent-docs-c193="">
+        <div _ngcontent-docs-c193="" nz-row="" class="ant-row">
+          <div _ngcontent-docs-c193="" nz-col="" nzspan="6" nzorder="4" class="ant-col ant-col-6 ant-col-order-4"> 1
+            col-order-4
+          </div>
+          <div _ngcontent-docs-c193="" nz-col="" nzspan="6" nzorder="3" class="ant-col ant-col-6 ant-col-order-3"> 2
+            col-order-3
+          </div>
+          <div _ngcontent-docs-c193="" nz-col="" nzspan="6" nzorder="2" class="ant-col ant-col-6 ant-col-order-2"> 3
+            col-order-2
+          </div>
+          <div _ngcontent-docs-c193="" nz-col="" nzspan="6" nzorder="1" class="ant-col ant-col-6 ant-col-order-1"> 4
+            col-order-1
+          </div>
+        </div>
+      </div>
+    </div><!----><!----></section>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+      <pre class="language-angular"><code><span class="token keyword">import</span> <span
+        class="token punctuation">{{'{'}}</span> Component <span class="token punctuation">}</span> <span
+        class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+        class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span
+          class="token punctuation">{{'{'}}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-grid-flex-order'</span><span
+          class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-row</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>6<span class="token punctuation">"</span></span> <span
+          class="token attr-name">nzOrder</span><span class="token attr-value"><span
+          class="token punctuation">=</span><span class="token punctuation">"</span>4<span
+          class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+          1 col-order-4
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+          class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>6<span class="token punctuation">"</span></span> <span
+          class="token attr-name">nzOrder</span><span class="token attr-value"><span
+          class="token punctuation">=</span><span class="token punctuation">"</span>3<span
+          class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+          2 col-order-3
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+          class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>6<span class="token punctuation">"</span></span> <span
+          class="token attr-name">nzOrder</span><span class="token attr-value"><span
+          class="token punctuation">=</span><span class="token punctuation">"</span>2<span
+          class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+          3 col-order-2
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+          class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+          class="token attr-name">nz-col</span> <span class="token attr-name">nzSpan</span><span
+          class="token attr-value"><span class="token punctuation">=</span><span
+          class="token punctuation">"</span>6<span class="token punctuation">"</span></span> <span
+          class="token attr-name">nzOrder</span><span class="token attr-value"><span
+          class="token punctuation">=</span><span class="token punctuation">"</span>1<span
+          class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+          4 col-order-1
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+          class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+  `</span></span><span class="token punctuation">,</span>
+  <span class="token styles-string">styles: [
+    <span class="token css"><span class="token selector">`
+      <span class="token attribute">[nz-row]</span> </span><span class="token punctuation">{{'{'}}</span>
+        <span class="token property">background-color</span><span class="token punctuation">:</span> <span
+        class="token function">rgba</span><span class="token punctuation">(</span><span
+        class="token number">128</span>, <span class="token number">128</span>, <span
+        class="token number">128</span>, <span
+        class="token number">0.08</span><span class="token punctuation">)</span><span
+        class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    `</span>
+  ]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoGridFlexOrderComponent</span> <span
+          class="token punctuation">{{'{'}}</span><span class="token punctuation">}</span>
+</code></pre>
+    </div>
+  </section>
+  <h4>Flex Stretch</h4>
+  <p><code>nzCol</code> cung cấp thuộc tính <code>nzFlex</code> để lấp đầy phần còn lại</p>
+  <section class="code-box-demo">
+    <div class="ng-star-inserted">
+      <div _ngcontent-docs-c148=""><p _ngcontent-docs-c148="">Percentage columns</p>
+        <div _ngcontent-docs-c148="" nz-row="" class="ant-row">
+          <div _ngcontent-docs-c148="" nz-col="" nzflex="2" class="ant-col" style="flex: 2 1 0%;">2 / 5</div>
+          <div _ngcontent-docs-c148="" nz-col="" nzflex="3" class="ant-col" style="flex: 3 1 0%;">3 / 5</div>
+        </div>
+        <p _ngcontent-docs-c148="">Fill rest</p>
+        <div _ngcontent-docs-c148="" nz-row="" class="ant-row">
+          <div _ngcontent-docs-c148="" nz-col="" nzflex="100px" class="ant-col" style="flex: 0 0 100px;">100px</div>
+          <div _ngcontent-docs-c148="" nz-col="" nzflex="auto" class="ant-col" style="flex: 1 1 auto;">Fill Rest</div>
+        </div>
+        <p _ngcontent-docs-c148="">Raw flex style</p>
+        <div _ngcontent-docs-c148="" nz-row="" class="ant-row">
+          <div _ngcontent-docs-c148="" nz-col="" nzflex="1 1 200px" class="ant-col" style="flex: 1 1 200px;">1 1
+            200px
+          </div>
+          <div _ngcontent-docs-c148="" nz-col="" nzflex="0 1 300px" class="ant-col" style="flex: 0 1 300px;">0 1
+            300px
+          </div>
+        </div>
+      </div>
+    </div><!----><!----></section>
+  <h4>Responsive</h4>
+  <p>Đề cập đến Bootstrap [responsive design] (http://getbootstrap.com/css/#grid-media-queries), ở đây đặt trước năm
+    chiều: <code>xs</code> <code>sm</code><code>md</code><code>lg</code><code>xl</code></p>
+  <section class="code-box-demo">
+    <div class="ng-star-inserted">
+      <div nz-row="" class="ant-row">
+        <div nz-col="" nzxs="2" nzsm="4" nzmd="6" nzlg="8" nzxl="10"
+             class="ant-col ant-col-xs-2 ant-col-sm-4 ant-col-md-6 ant-col-lg-8 ant-col-xl-10"> Col
+        </div>
+        <div nz-col="" nzxs="20" nzsm="16" nzmd="12" nzlg="8" nzxl="4"
+             class="ant-col ant-col-xs-20 ant-col-sm-16 ant-col-md-12 ant-col-lg-8 ant-col-xl-4"> Col
+        </div>
+        <div nz-col="" nzxs="2" nzsm="4" nzmd="6" nzlg="8" nzxl="10"
+             class="ant-col ant-col-xs-2 ant-col-sm-4 ant-col-md-6 ant-col-lg-8 ant-col-xl-10"> Col
+        </div>
+      </div>
+    </div><!----><!----></section>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+      <pre class="language-angular"><code><span class="token keyword">import</span> <span
+        class="token punctuation">{{'{'}}</span> Component <span class="token punctuation">}</span> <span
+        class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+        class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span
+          class="token punctuation">{{'{'}}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-grid-responsive'</span><span
+          class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">nz-row</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzXs</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzSm</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>4<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzMd</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzLg</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>8<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzXl</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        Col
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzXs</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>20<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzSm</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>16<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzMd</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>12<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzLg</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>8<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzXl</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>4<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        Col
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">nzXs</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzSm</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>4<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzMd</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>6<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzLg</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>8<span
+        class="token punctuation">"</span></span> <span class="token attr-name">nzXl</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span
+        class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        Col
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+  `</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoGridResponsiveComponent</span> <span
+          class="token punctuation">{{'{'}}</span><span class="token punctuation">}</span>
+</code></pre>
+    </div>
+  </section>
+  <h4>More Responsive</h4>
+  <p>Thuộc tính <code>span</code><code>pull</code><code>push</code><code>offset</code><code>order</code> có thể được
+    nhúng vào thuộc tính <code>nzXs</code><code>nzSm</code>
+    <code>nzMd</code><code>nzLg</code><code>nzXl</code><code>nzXXl</code> để sử dụng. Trong đó <code>nzXs="6"</code>
+    tương đương với <code>[nzXs]="{{'{'}} span: 6 }"</code>
+  </p>
+  <section class="code-box-demo">
+    <div class="ng-star-inserted">
+      <div nz-row="" class="ant-row">
+        <div nz-col="" class="ant-col ant-col-xs-5 ant-col-xs-offset-1 ant-col-lg-6 ant-col-lg-offset-2"> Col</div>
+        <div nz-col="" class="ant-col ant-col-xs-11 ant-col-xs-offset-1 ant-col-lg-6 ant-col-lg-offset-2"> Col</div>
+        <div nz-col="" class="ant-col ant-col-xs-5 ant-col-xs-offset-1 ant-col-lg-6 ant-col-lg-offset-2"> Col</div>
+      </div>
+
+    </div><!----><!----></section>
+  <section class="highlight-wrapper highlight-wrapper-expand">
+    <div class="highlight">
+      <pre class="language-angular"><code><span class="token keyword">import</span> <span
+        class="token punctuation">{{'{'}}</span> Component <span class="token punctuation">}</span> <span
+        class="token keyword">from</span> <span class="token string">'@angular/core'</span><span
+        class="token punctuation">;</span>
+
+@<span class="token function">Component</span><span class="token punctuation">(</span><span
+          class="token punctuation">{{'{'}}</span>
+  selector<span class="token punctuation">:</span> <span class="token string">'nz-demo-grid-responsive-more'</span><span
+          class="token punctuation">,</span>
+  <span class="token template-string">template: <span class="token html">`
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+      class="token attr-name">nz-row</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">[nzXs]</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>{{'{'}} span: 5, offset: 1 }<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzLg]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{'{'}}
+        span: 6, offset: 2 }<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>
+        Col
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">[nzXs]</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>{{'{'}} span: 11, offset: 1 }<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzLg]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{'{'}}
+        span: 6, offset: 2 }<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>
+        Col
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span
+        class="token attr-name">nz-col</span> <span class="token attr-name">[nzXs]</span><span class="token attr-value"><span
+        class="token punctuation">=</span><span class="token punctuation">"</span>{{'{'}} span: 5, offset: 1 }<span
+        class="token punctuation">"</span></span> <span class="token attr-name">[nzLg]</span><span
+        class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{'{'}}
+        span: 6, offset: 2 }<span class="token punctuation">"</span></span><span
+        class="token punctuation">&gt;</span></span>
+        Col
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+        class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span
+      class="token punctuation">&gt;</span></span>
+  `</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">NzDemoGridResponsiveMoreComponent</span> <span
+          class="token punctuation">{{'{'}}</span><span class="token punctuation">}</span>
+</code></pre>
+    </div>
+  </section>
+</div>
