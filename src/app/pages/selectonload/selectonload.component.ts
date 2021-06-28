@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {user} from "./model/user";
 import {serviceUser} from "./service/service";
 
 @Component({
@@ -9,21 +8,25 @@ import {serviceUser} from "./service/service";
 })
 export class SelectonloadComponent implements OnInit {
 
-  randomUserUrl = "https://api.randomuser.me/?results=10";
-  optionList: user[] = [];
+  optionList: string[] = [];
+  pagenumber: number = 0;
+  pagesize: number = 9;
   selectedUser = null;
   isLoading = false;
 
   // tslint:disable:no-any
 
 
-  loadMore():void{
+  loadMore(): void {
     this.isLoading = true;
-    this.ser.getInfor().subscribe((res:user[]) => {
+    this.ser.getRandomNameList(this.pagenumber,this.pagesize).subscribe(data => {
       this.isLoading = false;
-      this.optionList = [...this.optionList, ...res];
+      this.optionList = [...this.optionList, ...data];
+      console.log(this.optionList);
+      this.pagenumber+=1;
     });
   }
+
   constructor( public ser: serviceUser) {}
   ngOnInit(): void {
     this.loadMore();

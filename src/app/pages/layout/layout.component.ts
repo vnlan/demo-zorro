@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {serviceUser} from "../selectonload/service/service";
-import {user} from "../selectonload/model/user";
+
 
 @Component({
   selector: 'app-layout',
@@ -14,20 +14,20 @@ export class LayoutComponent implements OnInit {
 
 
   randomUserUrl = "https://api.randomuser.me/?results=10";
-  optionList: user[] = [];
+  optionList: any[] = [];
   selectedUser = null;
   isLoading = false;
 
   // tslint:disable:no-any
 
 
-  loadMore():void{
-    this.isLoading = true;
-    this.ser.getInfor().subscribe((res:user[]) => {
-      this.isLoading = false;
-      this.optionList = [...this.optionList, ...res];
-    });
-  }
+  // loadMore():void{
+  //   this.isLoading = true;
+  //   this.ser.getInfor().subscribe((res:user[]) => {
+  //     this.isLoading = false;
+  //     this.optionList = [...this.optionList, ...res];
+  //   });
+  // }
   // loadMore(): void {
   //   this.isLoading = true;
   //   this.getRandomNameList.subscribe(data => {
@@ -37,7 +37,7 @@ export class LayoutComponent implements OnInit {
   // }
   constructor( public ser: serviceUser) {}
   ngOnInit(): void {
-    this.loadMore();
+    // this.loadMore();
   }
   // randomUserUrl = 'https://api.randomuser.me/?results=10';
   // optionList: string[] = [];
