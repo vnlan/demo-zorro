@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {serviceUser} from "./service/service";
+import {BehaviorSubject, Observable} from 'rxjs';
+import {debounceTime, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-selectonload',
@@ -13,9 +15,8 @@ export class SelectonloadComponent implements OnInit {
   pagesize: number = 9;
   selectedUser = null;
   isLoading = false;
-
+  searchChange$ = new BehaviorSubject('');
   // tslint:disable:no-any
-
 
   loadMore(): void {
     this.isLoading = true;
@@ -26,6 +27,7 @@ export class SelectonloadComponent implements OnInit {
       this.pagenumber+=1;
     });
   }
+
 
   constructor( public ser: serviceUser) {}
   ngOnInit(): void {
